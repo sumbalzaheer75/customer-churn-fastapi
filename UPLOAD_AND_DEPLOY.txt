@@ -1,0 +1,25 @@
+Sumbal — READ THIS FIRST
+
+Your existing trained model (churn_pipeline.pkl) is NOT included in this update package. Keep the same churn_pipeline.pkl that you already copied into your existing FastApi folder. Do not rename churn_model.pkl to churn_pipeline.pkl.
+
+PART A — UPDATE YOUR EXISTING LOCAL PROJECT
+1. Download and extract this ZIP to a temporary folder.
+2. Copy the extracted files (app.py, index.html, requirements.txt, README.md, render.yaml, .python-version, .gitignore, and examples folder) into your EXISTING folder:
+   C:\Users\Noman Traders\Desktop\FastApi
+3. When Windows asks whether to replace app.py, README.md, requirements.txt, or .gitignore, choose Replace. Leave the existing .venv, churn_pipeline.pkl, and churn_model.pkl in place.
+4. In VS Code, the running server should reload. Open http://127.0.0.1:8000/ (NOT /docs) to see the new UI.
+5. Confirm the status pill says “API connected · model found”. Run a prediction with the form.
+
+PART B — DEPLOY ON RENDER
+The files are prepared for Render, but the app is not deployed until you upload them to a GitHub repository and create a Render Web Service.
+1. Create a NEW public GitHub repository named customer-churn-fastapi (or another name you prefer).
+2. Upload the project files from the folder, including churn_pipeline.pkl and index.html. Do NOT upload .venv or private/customer source data. Because .python-version and .gitignore start with a dot, make sure you add them too.
+3. On https://render.com/, sign in and connect GitHub. Create a new Web Service and select your new repository.
+4. Use these settings if Render does not read render.yaml automatically:
+   Runtime: Python 3
+   Build command: pip install -r requirements.txt
+   Start command: uvicorn app:app --host 0.0.0.0 --port $PORT
+   Plan: Free, if available in your account.
+5. Deploy. Once successful, test the URL ending in /, /health, and /docs.
+
+Do not share this app as a production service or use real customer personal data. This is a learning/demo project and churn scores are model estimates.
